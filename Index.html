@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUCAS MODS PAINEL VIP</title>
+  <style>
+    :root {
+      --bg: #08070d;
+      --card: rgba(15, 16, 24, .94);
+      --border: rgba(160, 165, 190, .13);
+      --white: #f7f5fb;
+      --muted: #9a9db7;
+      --accent: #e9eaf4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 18px 14px 30px;
+      color: var(--white);
+      background:
+        radial-gradient(ellipse at 100% 0%, rgba(0, 74, 92, .22), transparent 38%),
+        radial-gradient(ellipse at 0% 30%, rgba(93, 65, 88, .18), transparent 40%),
+        linear-gradient(145deg, #17151d, var(--bg) 62%);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    .panel { width: 100%; max-width: 760px; margin: 0 auto; }
+    .header {
+      min-height: 155px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 38px;
+      background: rgba(7, 8, 14, .92);
+      box-shadow: 0 15px 40px rgba(0,0,0,.25);
+      margin-bottom: 30px;
+    }
+    .logo {
+      width: 92px; height: 92px; flex: 0 0 92px;
+      display: grid; place-items: center; text-align: center;
+      border-radius: 50%;
+      color: white; font-weight: bold; font-style: italic;
+      font-size: 15px; line-height: 1.05;
+      border: 2px solid rgba(255,255,255,.3);
+      background:
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,.25), transparent 25%),
+        repeating-linear-gradient(135deg, #34343b 0 3px, #111116 3px 6px);
+      box-shadow: 0 0 24px rgba(225,225,255,.18);
+    }
+    .brand { min-width: 0; flex: 1; }
+    .brand h1 {
+      margin: 0;
+      font-size: clamp(21px, 5vw, 38px);
+      line-height: 1.1;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+    .vip {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 8px;
+      padding: 8px 14px;
+      border-radius: 16px;
+      color: #fff;
+      background: linear-gradient(135deg, #bfc0c9, #f4f4f8, #a5a6b1);
+      box-shadow: 0 0 20px rgba(255,255,255,.25);
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+    .power {
+      width: 48px; height: 48px; flex: 0 0 48px;
+      display: grid; place-items: center;
+      border: 0; background: transparent; color: white;
+      cursor: pointer; padding: 5px;
+    }
+    .power svg { display: block; width: 38px; height: 38px; }
+    .power svg path, .power svg line {
+      stroke: currentColor; stroke-width: 3.5;
+      stroke-linecap: round; stroke-linejoin: round; fill: none;
+    }
+    .feature {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 126px;
+      padding: 22px 23px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      border-radius: 29px;
+      background: linear-gradient(110deg, rgba(17,18,27,.97), rgba(13,13,21,.97));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.015);
+    }
+    .feature-copy { min-width: 0; flex: 1; }
+    .feature h2 {
+      margin: 0 0 10px;
+      color: var(--white);
+      font-size: clamp(19px, 4vw, 27px);
+      line-height: 1.1;
+    }
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(15px, 3.1vw, 19px);
+      line-height: 1.25;
+      font-weight: bold;
+    }
+    .switch {
+      position: relative;
+      flex: 0 0 82px;
+      width: 82px; height: 46px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 30px;
+      background: #20212b;
+      cursor: pointer;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,.25);
+      transition: background .2s ease, box-shadow .2s ease;
+    }
+    .switch::before {
+      content: "";
+      position: absolute;
+      top: 5px; left: 5px;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: #f0f1ff;
+      box-shadow: 0 1px 5px rgba(0,0,0,.25);
+      transition: transform .2s ease;
+    }
+    .switch[aria-checked="true"] {
+      background: linear-gradient(110deg, #b9a0a9, #f16e88);
+      box-shadow: 0 0 20px rgba(240, 104, 136, .24);
+    }
+    .switch[aria-checked="true"]::before { transform: translateX(36px); }
+    .section-label {
+      display: flex; align-items: center; gap: 14px;
+      margin: 30px 8px 18px;
+      color: #b5b4c6;
+      font-size: 25px; font-weight: bold; letter-spacing: 3px;
+    }
+    .section-label span { font-family: Arial, sans-serif; font-size: 30px; }
+    .subhead {
+      margin: 0 0 18px;
+      padding: 16px 22px;
+      border: 1px solid var(--border);
+      border-radius: 23px;
+      color: #b5b3c5;
+      background: rgba(17,13,22,.75);
+      font-size: 25px;
+      font-weight: bold;
+    }
+    .notice {
+      color: #77788b; font: 12px/1.4 Arial, sans-serif;
+      text-align: center; margin-top: 22px;
+    }
+    @media (max-width: 420px) {
+      .header { gap: 10px; padding: 17px; border-radius: 28px; }
+      .logo { width: 68px; height: 68px; flex-basis: 68px; font-size: 12px; }
+      .vip { margin-left: 3px; padding: 5px 8px; font-size: 11px; }
+      .power { width: 38px; height: 38px; flex-basis: 38px; padding: 3px; }
+      .power svg { width: 30px; height: 30px; }
+      .feature { padding: 19px 16px; gap: 12px; border-radius: 24px; }
+      .switch { flex-basis: 70px; width: 70px; height: 40px; }
+      .switch::before { width: 30px; height: 30px; }
+      .switch[aria-checked="true"]::before { transform: translateX(28px); }
+      .brand h1 { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+  <main class="panel">
+    <header class="header">
+      <div class="logo" aria-label="Logo LUCAS MODS">PROXY SITE<br><span>LUCAS MODS</span></div>
+      <div class="brand">
+        <h1>PROXY LUCAS MODS <span class="vip">VIP</span></h1>
+      </div>
+      <button class="power" id="powerButton" aria-label="Ativar ou desativar painel" title="Ativar/desativar painel">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.4 5.6a9 9 0 1 1-12.8 0"/><line x1="12" y1="2.5" x2="12" y2="13"/></svg>
+      </button>
+    </header>
+
+    <section class="feature">
+      <div class="feature-copy">
+        <h2>HS ALTO + NECK</h2>
+        <p>HS em cima da Cabeça/Pescoço - Exclusivo VIP</p>
+      </div>
+      <button class="switch" role="switch" aria-checked="false" aria-label="HS Alto + Neck"></button>
+    </section>
+
+    <section class="feature">
+      <div class="feature-copy">
+        <h2>BYPASS</h2>
+        <p>Bypass garante segurança</p>
+      </div>
+      <button class="switch" role="switch" aria-checked="false" aria-label="Bypass"></button>
+    </section>
+
+    <div class="section-label"><span>♟</span> PLAYERS</div>
+    <div class="subhead">GERAL</div>
+
+    <section class="feature">
+      <div class="feature-copy">
+        <h2>TROCA DE ARMA RÁPIDA</h2>
+        <p>Permite alternar entre armas quase instantaneamente.</p>
+      </div>
+      <button class="switch" role="switch" aria-checked="false" aria-label="Troca de arma rápida"></button>
+    </section>
+
+    <section class="feature">
+      <div class="feature-copy">
+        <h2>TELA PARADA</h2>
+        <p>Estabiliza o analógico e melhora a precisão do movimento.</p>
+      </div>
+      <button class="switch" role="switch" aria-checked="false" aria-label="Tela parada"></button>
+    </section>
+
+    <section class="feature">
+      <div class="feature-copy">
+        <h2>NO DELAY</h2>
+        <p>Corta a animação de queda e permite movimento instantâneo.</p>
+      </div>
+      <button class="switch" role="switch" aria-checked="false" aria-label="No delay"></button>
+    </section>
+
+    <section class="feature">
+      <div class="feature-copy">
+        <h2>IMPULSO XUPETINHA</h2>
+        <p>Aumenta a velocidade e a distância do lançador.</p>
+      </div>
+      <button class="switch" role="switch" aria-checked="false" aria-label="Impulso Xupetinha"></button>
+    </section>
+
+    <section class="feature">
+      <div class="feature-copy">
+        <h2>DANO FAKE CAR</h2>
+      </div>
+      <button class="switch" role="switch" aria-checked="false" aria-label="Dano fake car"></button>
+    </section>
+
+    <p class="notice">CREATOR - LUCAS MODS<br>PROXY FREE</p>
+  </main>
+  <script>
+    document.querySelectorAll('.switch').forEach((toggle) => {
+      toggle.addEventListener('click', () => {
+        const enabled = toggle.getAttribute('aria-checked') === 'true';
+        toggle.setAttribute('aria-checked', String(!enabled));
+      });
+    });
+    const powerButton = document.getElementById('powerButton');
+    let panelEnabled = true;
+    powerButton.addEventListener('click', () => {
+      panelEnabled = !panelEnabled;
+      document.querySelectorAll('.switch').forEach((toggle) => {
+        toggle.disabled = !panelEnabled;
+        toggle.style.opacity = panelEnabled ? '1' : '.4';
+        toggle.style.cursor = panelEnabled ? 'pointer' : 'not-allowed';
+      });
+      document.querySelectorAll('.feature').forEach((card) => {
+        card.style.opacity = panelEnabled ? '1' : '.55';
+      });
+    });
+  </script>
+</body>
+</html>
