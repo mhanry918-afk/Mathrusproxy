@@ -1,0 +1,14 @@
+
+{
+  "name": "lucas-mods-vip",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Servidor de configuracao do Lucas Mods VIP",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+}
